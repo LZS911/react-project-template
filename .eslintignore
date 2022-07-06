@@ -1,0 +1,13 @@
+src/**/*.test.ts
+src/**/*.test.tsx
+
+src/locale/ch-language
+src/locale/en-language
+src/api
+node_modules
+
+# config
+vite.config.ts
+tailwind.config.js
+postcss.config.js
+template-generate.js
