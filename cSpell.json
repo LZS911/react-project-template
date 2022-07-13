@@ -2,16 +2,7 @@
   "version": "0.2",
   "language": "en",
   "maxNumberOfProblems": 10000,
-  "dictionaries": [
-    "typescript",
-    "node",
-    "html",
-    "css",
-    "less",
-    "powershell",
-    "dev-env",
-    "antd-ui"
-  ],
+  "dictionaries": ["typescript", "node", "html", "css", "less", "powershell", "dev-env", "antd-ui"],
   "flagWords": [],
   "ignorePaths": [
     "documents/**",
@@ -38,5 +29,5 @@
     "Makefile.variables",
     ".eslintrc.json"
   ],
-  "words": []
+  "words": ["ahooks", "wechat", "weibo", "IFTRUE", "FITRUE"]
 }

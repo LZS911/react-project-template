@@ -13,7 +13,9 @@
     "node": true,
     "es6": true
   },
-  "rules": {},
+  "rules": {
+    "react/prop-types": 0
+  },
   "parserOptions": {
     "ecmaVersion": 6,
     "sourceType": "module",
