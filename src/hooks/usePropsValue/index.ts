@@ -1,5 +1,5 @@
 import { useUpdate } from 'ahooks';
-import { isFunction } from 'lodash';
+import { isFunction } from 'lodash-es';
 import { SetStateAction, useRef } from 'react';
 export type usePropsValueOptions<T> = {
   value?: T;

@@ -29,5 +29,5 @@
     "Makefile.variables",
     ".eslintrc.json"
   ],
-  "words": ["ahooks", "wechat", "weibo", "IFTRUE", "FITRUE"]
+  "words": ["ahooks", "wechat", "weibo", "IFTRUE", "FITRUE", "brotli"]
 }

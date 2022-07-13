@@ -1,5 +1,5 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Card, Form, Typography } from 'antd';
+import { Form } from 'antd';
 import { useForm } from 'antd/lib/form/Form';
 import { useTranslation } from 'react-i18next';
 import { ILoginForm } from '.';
@@ -19,11 +19,10 @@ const Login: React.FC = () => {
       <div className="mt-6 ml-6 flex items-center">
         <img src="/static/images/logo.svg" className="mr-3" />
         <span className="text-2xl text-white">{t('login.loginHeader.title')}</span>
-        <Button>123321</Button>
       </div>
       <div className="flex justify-center items-center mt-8 ">
-        <Card className="rounded-md pt-6 sm:w-2/5  md:w-1/3 lg:w-1/4 bg-white">
-          <div className="text-center text-xl font-black mb-10">{t('login.loginTitle')}</div>
+        <div className="rounded-md sm:w-2/5 md:w-1/3 lg:w-1/4 bg-white p-6">
+          <div className="text-center text-xl font-black my-8">{t('login.loginTitle')}</div>
           <Form<ILoginForm> form={form} onFinish={handleLogin}>
             <Form.Item
               rules={[
@@ -49,7 +48,7 @@ const Login: React.FC = () => {
               name="password"
               initialValue="6666"
               extra={
-                <div className="text-end mt-1 text-xs">
+                <div className="text-end mt-1 text-xs text-gray-500">
                   <a>{t('login.loginForm.forgotPassword')}</a>
                 </div>
               }
@@ -75,9 +74,7 @@ const Login: React.FC = () => {
           </Form>
 
           <div className="mt-10 text-center">
-            <Typography.Text className="text-gray-500 text-xs">
-              {t('login.otherLogin')}
-            </Typography.Text>
+            <span className="text-gray-500 text-xs">{t('login.otherLogin')}</span>
 
             <div className="text-center mt-4 flex justify-center mb-20">
               <a>
@@ -93,7 +90,7 @@ const Login: React.FC = () => {
 
             <a className="text-xs text-gray-500">{t('login.signUpTips')}</a>
           </div>
-        </Card>
+        </div>
       </div>
     </div>
   );
