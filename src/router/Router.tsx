@@ -1,11 +1,15 @@
-import { Suspense, useMemo, useState } from 'react';
+import { Suspense } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { noLoginPageList } from './router.config';
+import { IMenuDataItem } from '.';
+import useUserConfig from '../hooks/useUserConfig';
+import { noLoginPageList, pageList } from './router.config';
 
 const RouterComponent: React.FC = () => {
-  const [isLogin, setIsLogin] = useState(false);
-  const noLoginPageElement = useMemo(() => {
-    return noLoginPageList.map((v) => {
+  const { isLogin, token } = useUserConfig();
+  console.log(isLogin);
+
+  const genPage = (pages: IMenuDataItem[]) => {
+    return pages.map((v) => {
       return (
         <Route
           {...v}
@@ -18,14 +22,24 @@ const RouterComponent: React.FC = () => {
         />
       );
     });
-  }, []);
+  };
+
   return (
     <BrowserRouter>
-      {!isLogin && (
+      {(!isLogin || !token) && (
         <Suspense fallback={null}>
           <Routes>
-            {noLoginPageElement}
+            {genPage(noLoginPageList)}
             <Route path="*" element={<Navigate to="/login" />} />
+          </Routes>
+        </Suspense>
+      )}
+
+      {(isLogin || token) && (
+        <Suspense fallback={null}>
+          <Routes>
+            {genPage(pageList)}
+            <Route path="*" element={<Navigate to="/dashboard" />} />
           </Routes>
         </Suspense>
       )}

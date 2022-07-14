@@ -2,13 +2,16 @@ module.exports = {
   page: (name, cssProcessor = 'css') => {
     return {
       parentName: 'pages',
-      routerDir: 'router/router.config.tsx',
-      routerPathFormat: () => name.replace(/([a-z])([A-Z])/g, '$1_$2').toLowerCase(),
-      // addRouterAfter: () => {
-      // axios.get('https://api.github.com/users/LZS911').then((res) => {
-      //   console.log(res);
-      // });
-      // },
+      router: {
+        dir: 'router/router.config.tsx',
+        pathFormat: () => name.replace(/([a-z])([A-Z])/g, '$1_$2').toLowerCase(),
+        defaultVariableName: 'pageList',
+        // addRouterAfter: () => {
+        // axios.get('https://api.github.com/users/LZS911').then((res) => {
+        //   console.log(res);
+        // });
+        // },
+      },
       [`${name}.tsx`]: () => {
         return `
           const ${name}:React.FC = () => {
@@ -48,28 +51,30 @@ module.exports = {
   component: (name, cssProcessor = 'css') => {
     return {
       parentName: 'components',
-      'index.tsx': () => {
+      [`${name}.tsx`]: () => {
         return `
-          import React from 'react';
-          import { I${name}Props } from './index.d';
-          import './index.${cssProcessor}';
-  
-          const ${name}:React.FC<I${name}Props> = (props) => {
-            return <h1>${name}</h1>;
+          import {I${name}Props} from '.';
+          const ${name}:React.FC<I${name}Props> = ({className = ''}) => {
+            return (
+              <div className={className}>
+                ${name}
+              </div>
+            )
           }
           export default ${name};
         `;
       },
-      [`index.${cssProcessor}`]: () => {
+      'index.ts': () => {
         return `
-          .${name.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()}-wrapper{
+          import ${name} from './${name}';
+
+          export interface I${name}Props {
+            children?: React.ReactNode;
+            className?: string;
           }
+          
+          export default ${name}
         `;
-      },
-      'index.d.ts': () => {
-        return `export interface I${name}Props {
-          className?: string;
-        }`;
       },
       'docs.md': () => {
         return `# Generate ${name} component by gl-cli`;

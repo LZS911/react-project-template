@@ -1,32 +1,56 @@
 /** @type {import('tailwindcss').Config} */
 const plugin = require('tailwindcss/plugin');
+const colors = require('tailwindcss/colors');
 
 module.exports = {
+  darkMode: 'class',
   content: ['./index.html', './src/**/*.{ts,tsx}'],
   theme: {
-    extend: {
-      backgroundImage: {},
+    textColor: {
+      primary: 'var(--color-primary)',
+      secondary: 'var(--color-secondary)',
+      ...colors,
     },
+    backgroundColor: {
+      primary: 'var(--color-primary)',
+      secondary: 'var(--color-secondary)',
+      ...colors,
+    },
+    extend: {},
   },
   plugins: [
-    plugin(({ addUtilities, matchUtilities, config, e, theme }) => {
-      console.log(config, e, theme);
+    plugin(({ addUtilities, matchUtilities, addBase, theme }) => {
+      addBase({
+        span: {
+          fontSize: theme('fontSize.sm'),
+          color: theme('colors.black'),
+          opacity: theme('opacity.90'),
+        },
+        a: {
+          fontSize: theme('fontSize.xs'),
+          color: theme('colors.gray.500'),
+          opacity: theme('opacity.90'),
+          '&:hover': {
+            color: theme('colors.sky.500'),
+          },
+        },
+      });
       addUtilities({
-        '.test-demo': {
+        '.water-wave-hide': {
           display: 'block',
           position: 'absolute',
           left: '0px',
           top: '0px',
           width: '100%',
           height: '100%',
-          'border-radius': '12px',
+          'border-radius': theme('borderRadius.lg'),
           opacity: '0',
           transition: 'all 1s ease 0s',
-          'box-shadow': 'rgb(140 140 140 / 90%) 0px 0px 6px 6px',
+          'box-shadow': 'rgb(140 140 140 / 80%) 0px 0px 6px 6px',
         },
-        '.test-demo2': {
+        '.water-wave-show': {
           position: 'absolute',
-          'border-radius': '12px',
+          'border-radius': theme('borderRadius.lg'),
           left: '0px',
           top: '0px',
           opacity: '1',

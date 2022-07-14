@@ -24,4 +24,21 @@ code {
 
 @tailwind base;
 @tailwind components;
+
+.theme-blue {
+  --color-primary: #1890FF;
+  --color-secondary: #E6F7FF;
+}
+
+.theme-purple {
+  --color-primary: #7265E6;
+  --color-secondary: #EEEDFC;
+}
+
+.theme-green {
+  --color-primary: #00A854;
+  --color-secondary: #D1E8D99C;
+}
+
 @tailwind utilities;
+

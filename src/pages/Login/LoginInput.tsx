@@ -25,7 +25,7 @@ const LoginInput: React.ForwardRefRenderFunction<HTMLDivElement, ILoginInputProp
   return (
     <>
       <div ref={ref} className="mb-1 text-xs">
-        {label}
+        <span className="text-xs">{label}</span>
       </div>
       <div
         className={`flex items-center border-b-2 pb-2 w-full pl-2 ${
@@ -47,7 +47,7 @@ const LoginInput: React.ForwardRefRenderFunction<HTMLDivElement, ILoginInputProp
         {type === 'password' && (
           <button
             onClick={switchPasswordVisibility}
-            className="hover:bg-slate-200 relative transition-colors cursor-pointer p-2 rounded-md flex justify-center items-center after:test-demo active:after:test-demo2"
+            className="hover:bg-slate-200 transition-colors cursor-pointer p-2 rounded-md flex justify-center items-center relative after:water-wave-hide active:after:water-wave-show"
           >
             {isShowPassword ? <EyeOutlined /> : <EyeInvisibleOutlined />}
           </button>

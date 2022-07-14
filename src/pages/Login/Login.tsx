@@ -3,25 +3,33 @@ import { Form } from 'antd';
 import { useForm } from 'antd/lib/form/Form';
 import { useTranslation } from 'react-i18next';
 import { ILoginForm } from '.';
+import Paper from '../../components/Paper';
+import useUserConfig from '../../hooks/useUserConfig';
 import LoginInput from './LoginInput';
 
 const Login: React.FC = () => {
   const { t } = useTranslation();
   const [form] = useForm<ILoginForm>();
+  const { setLoginUserInfo } = useUserConfig();
 
   const handleLogin = async () => {
-    const values = await form.validateFields();
-    console.log(values);
+    const { username } = await form.validateFields();
+    setLoginUserInfo({
+      username,
+      token: 'df3fd3',
+      isLogin: true,
+      getUserInfoLoading: false,
+    });
   };
 
   return (
     <div className="bg-gradient-to-r from-pink-300 via-purple-300 to-sky-500 w-screen min-h-screen min-w-full flex flex-col">
-      <div className="mt-6 ml-6 flex items-center">
+      <div className="mt-6 ml-6 flex items-center ">
         <img src="/static/images/logo.svg" className="mr-3" />
         <span className="text-2xl text-white">{t('login.loginHeader.title')}</span>
       </div>
       <div className="flex justify-center items-center mt-8 ">
-        <div className="rounded-md sm:w-2/5 md:w-1/3 lg:w-1/4 bg-white p-6">
+        <Paper className="sm:w-2/5 md:w-2/5 lg:w-1/4 dark:bg-white">
           <div className="text-center text-xl font-black my-8">{t('login.loginTitle')}</div>
           <Form<ILoginForm> form={form} onFinish={handleLogin}>
             <Form.Item
@@ -48,7 +56,7 @@ const Login: React.FC = () => {
               name="password"
               initialValue="6666"
               extra={
-                <div className="text-end mt-1 text-xs text-gray-500">
+                <div className="text-end mt-1">
                   <a>{t('login.loginForm.forgotPassword')}</a>
                 </div>
               }
@@ -65,7 +73,7 @@ const Login: React.FC = () => {
               <div className="text-center">
                 <button
                   type="submit"
-                  className="bg-gradient-to-r from-pink-300 via-purple-300 to-sky-500 text-white w-full py-2 rounded-xl text-base relative after:test-demo active:after:test-demo2"
+                  className="bg-gradient-to-r from-pink-300 via-purple-300 to-sky-500 text-white w-full py-2 rounded-xl text-base relative after:water-wave-hide active:after:water-wave-show"
                 >
                   {t('login.loginForm.submitText')}
                 </button>
@@ -74,7 +82,7 @@ const Login: React.FC = () => {
           </Form>
 
           <div className="mt-10 text-center">
-            <span className="text-gray-500 text-xs">{t('login.otherLogin')}</span>
+            <span className="text-xs">{t('login.otherWayLogin')}</span>
 
             <div className="text-center mt-4 flex justify-center mb-20">
               <a>
@@ -88,9 +96,9 @@ const Login: React.FC = () => {
               </a>
             </div>
 
-            <a className="text-xs text-gray-500">{t('login.signUpTips')}</a>
+            <a className="">{t('login.signUpTips')}</a>
           </div>
-        </div>
+        </Paper>
       </div>
     </div>
   );
