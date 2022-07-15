@@ -1,12 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import CONSTANT from '../../common/constant';
+import LocalStorageWrapper from '../../utils/LocalStorageWrapper';
 export interface IUserConfigState {
   username: string;
   isLogin: boolean;
   token: string;
   getUserInfoLoading: boolean;
 }
-const localToken = window.localStorage.getItem(CONSTANT.TOKEN);
+const localToken = LocalStorageWrapper.get(CONSTANT.TOKEN);
 const initialState: IUserConfigState = {
   username: '',
   isLogin: !!localToken,

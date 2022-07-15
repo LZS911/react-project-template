@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { IMenuDataItem } from '.';
 import { useInitTheme } from '../hooks/useChangeTheme';
 import useUserConfig from '../hooks/useUserConfig';
+import Layout from '../pages/Layout';
 import { noLoginPageList, pageList } from './router.config';
 
 const RouterComponent: React.FC = () => {
@@ -38,10 +39,12 @@ const RouterComponent: React.FC = () => {
 
       {(isLogin || token) && (
         <Suspense fallback={null}>
-          <Routes>
-            {genPage(pageList)}
-            <Route path="*" element={<Navigate to="/dashboard" />} />
-          </Routes>
+          <Layout>
+            <Routes>
+              {genPage(pageList)}
+              <Route path="*" element={<Navigate to="/dashboard" />} />
+            </Routes>
+          </Layout>
         </Suspense>
       )}
     </BrowserRouter>

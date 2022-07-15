@@ -23,13 +23,13 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="bg-gradient-to-r from-pink-300 via-purple-300 to-sky-500 w-screen min-h-screen min-w-full flex flex-col">
+    <div className="bg-gradient-to-r from-pink-300 via-purple-300 to-sky-500 w-screen min-h-screen min-w-full flex flex-col dark:from-slate-900 dark:to-stone-900">
       <div className="mt-6 ml-6 flex items-center ">
         <img src="/static/images/logo.svg" className="mr-3" />
         <span className="text-2xl text-white">{t('login.loginHeader.title')}</span>
       </div>
       <div className="flex justify-center items-center mt-8 ">
-        <ThemeBase.Paper className="sm:w-2/5 md:w-2/5 lg:w-1/4 p-6 ">
+        <ThemeBase.Paper className="rounded-md sm:w-2/5 md:w-2/5 lg:w-1/4 p-6 ">
           <div className="text-center text-xl font-black my-8">{t('login.loginTitle')}</div>
           <Form<ILoginForm> form={form} onFinish={handleLogin}>
             <Form.Item
@@ -75,7 +75,7 @@ const Login: React.FC = () => {
               <div className="text-center">
                 <button
                   type="submit"
-                  className="bg-gradient-to-r from-pink-300 via-purple-300 to-sky-500 text-white w-full py-2 rounded-xl text-base relative after:water-wave-hide active:after:water-wave-show"
+                  className="bg-gradient-to-r from-pink-300 via-purple-300 to-sky-500 text-white w-full py-2 rounded-xl text-base relative after:water-wave-hide active:after:water-wave-show dark:from-slate-900 dark:to-stone-900"
                 >
                   {t('login.loginForm.submitText')}
                 </button>

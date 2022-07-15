@@ -3,6 +3,7 @@ import { useBoolean, useToggle } from 'ahooks';
 import { forwardRef, HTMLInputTypeAttribute, useMemo } from 'react';
 import { ILoginInputProps } from '.';
 import CONSTANT from '../../common/constant';
+import ThemeBase from '../../components/ThemeBase';
 import usePropsValue from '../../hooks/usePropsValue';
 
 const LoginInput: React.ForwardRefRenderFunction<HTMLDivElement, ILoginInputProps> = (
@@ -15,7 +16,7 @@ const LoginInput: React.ForwardRefRenderFunction<HTMLDivElement, ILoginInputProp
     onChange,
   });
   const [isFocus, { setFalse: clearFocus, setTrue: setFocus }] = useBoolean(false);
-  const [isShowPassword, { toggle: switchPasswordVisibility }] = useToggle(false);
+  const [isShowPassword, { toggle: togglePasswordVisibility }] = useToggle(false);
   const internalType = useMemo((): HTMLInputTypeAttribute => {
     if (type !== 'password') {
       return type;
@@ -46,12 +47,10 @@ const LoginInput: React.ForwardRefRenderFunction<HTMLDivElement, ILoginInputProp
           onBlur={clearFocus}
         />
         {type === 'password' && (
-          <span
-            onClick={switchPasswordVisibility}
-            className="dark:text-white hover:bg-slate-200 transition-colors cursor-pointer p-2 rounded-md flex justify-center items-center relative after:water-wave-hide active:after:water-wave-show"
-          >
-            {isShowPassword ? <EyeOutlined /> : <EyeInvisibleOutlined />}
-          </span>
+          <ThemeBase.Icon
+            onClick={togglePasswordVisibility}
+            icon={isShowPassword ? <EyeOutlined /> : <EyeInvisibleOutlined />}
+          />
         )}
       </div>
     </>

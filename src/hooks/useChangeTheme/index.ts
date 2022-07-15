@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import CONSTANT from '../../common/constant';
 import { ThemeModeEnum, ThemePrimaryEnum } from '../../common/enum';
+import LocalStorageWrapper from '../../utils/LocalStorageWrapper';
 
 const addClass = (className: string) => {
   if (document.documentElement.classList.contains(className)) {
@@ -20,38 +21,42 @@ const removeClass = (className: string) => {
 
 export const useInitTheme = () => {
   useEffect(() => {
-    const colorThemeLocal = localStorage.getItem(CONSTANT.THEME_MODE);
-    const primaryThemeLocal = localStorage.getItem(CONSTANT.PRIMARY_MODE);
+    const colorThemeLocal = LocalStorageWrapper.get<ThemeModeEnum>(CONSTANT.THEME_MODE);
+    const primaryThemeLocal = LocalStorageWrapper.getOrDefault<ThemePrimaryEnum>(
+      CONSTANT.PRIMARY_MODE,
+      ThemePrimaryEnum.Blue,
+    );
 
     if (colorThemeLocal === ThemeModeEnum.Dark) {
       addClass(ThemeModeEnum.Dark);
     }
 
-    addClass(primaryThemeLocal ?? ThemePrimaryEnum.Blue);
+    addClass(primaryThemeLocal);
   }, []);
 };
 
 const useChangeTheme = () => {
-  const colorThemeLocal: ThemeModeEnum = localStorage.getItem(CONSTANT.THEME_MODE) as ThemeModeEnum;
-  const primaryThemeLocal: ThemePrimaryEnum = localStorage.getItem(
+  const colorThemeLocal: ThemeModeEnum = LocalStorageWrapper.getOrDefault<ThemeModeEnum>(
+    CONSTANT.THEME_MODE,
+    ThemeModeEnum.Light,
+  );
+  const primaryThemeLocal: ThemePrimaryEnum = LocalStorageWrapper.getOrDefault<ThemePrimaryEnum>(
     CONSTANT.PRIMARY_MODE,
-  ) as ThemePrimaryEnum;
-  const [currentThemeMode, setCurrentThemeMode] = useState<ThemeModeEnum>(
-    colorThemeLocal ?? ThemeModeEnum.Light,
+    ThemePrimaryEnum.Blue,
   );
-  const [currentThemePrimary, setCurrentThemePrimary] = useState<ThemePrimaryEnum>(
-    primaryThemeLocal ?? ThemePrimaryEnum.Blue,
-  );
+  const [currentThemeMode, setCurrentThemeMode] = useState<ThemeModeEnum>(colorThemeLocal);
+  const [currentThemePrimary, setCurrentThemePrimary] =
+    useState<ThemePrimaryEnum>(primaryThemeLocal);
 
   const _setDark = () => {
     addClass(ThemeModeEnum.Dark);
-    localStorage.setItem(CONSTANT.THEME_MODE, ThemeModeEnum.Dark);
+    LocalStorageWrapper.set(CONSTANT.THEME_MODE, ThemeModeEnum.Dark);
     setCurrentThemeMode(ThemeModeEnum.Dark);
   };
 
   const _setLight = () => {
     removeClass(ThemeModeEnum.Dark);
-    localStorage.setItem(CONSTANT.THEME_MODE, ThemeModeEnum.Light);
+    LocalStorageWrapper.set(CONSTANT.THEME_MODE, ThemeModeEnum.Light);
     setCurrentThemeMode(ThemeModeEnum.Light);
   };
 
@@ -59,7 +64,7 @@ const useChangeTheme = () => {
     addClass(ThemePrimaryEnum.Blue);
     removeClass(ThemePrimaryEnum.Green);
     removeClass(ThemePrimaryEnum.Purple);
-    localStorage.setItem(CONSTANT.PRIMARY_MODE, ThemePrimaryEnum.Blue);
+    LocalStorageWrapper.set(CONSTANT.PRIMARY_MODE, ThemePrimaryEnum.Blue);
     setCurrentThemePrimary(ThemePrimaryEnum.Blue);
   };
 
@@ -67,7 +72,7 @@ const useChangeTheme = () => {
     addClass(ThemePrimaryEnum.Green);
     removeClass(ThemePrimaryEnum.Blue);
     removeClass(ThemePrimaryEnum.Purple);
-    localStorage.setItem(CONSTANT.PRIMARY_MODE, ThemePrimaryEnum.Green);
+    LocalStorageWrapper.set(CONSTANT.PRIMARY_MODE, ThemePrimaryEnum.Green);
     setCurrentThemePrimary(ThemePrimaryEnum.Green);
   };
 
@@ -75,7 +80,7 @@ const useChangeTheme = () => {
     addClass(ThemePrimaryEnum.Purple);
     removeClass(ThemePrimaryEnum.Blue);
     removeClass(ThemePrimaryEnum.Green);
-    localStorage.setItem(CONSTANT.PRIMARY_MODE, ThemePrimaryEnum.Purple);
+    LocalStorageWrapper.set(CONSTANT.PRIMARY_MODE, ThemePrimaryEnum.Purple);
     setCurrentThemePrimary(ThemePrimaryEnum.Purple);
   };
 
