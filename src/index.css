@@ -21,6 +21,10 @@ code {
     monospace;
 }
 
+#root{
+  height: 100vh;
+}
+
 
 @tailwind base;
 @tailwind components;

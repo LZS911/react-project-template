@@ -3,7 +3,7 @@ import { Form } from 'antd';
 import { useForm } from 'antd/lib/form/Form';
 import { useTranslation } from 'react-i18next';
 import { ILoginForm } from '.';
-import Paper from '../../components/Paper';
+import ThemeBase from '../../components/ThemeBase';
 import useUserConfig from '../../hooks/useUserConfig';
 import LoginInput from './LoginInput';
 
@@ -29,7 +29,7 @@ const Login: React.FC = () => {
         <span className="text-2xl text-white">{t('login.loginHeader.title')}</span>
       </div>
       <div className="flex justify-center items-center mt-8 ">
-        <Paper className="sm:w-2/5 md:w-2/5 lg:w-1/4 dark:bg-white">
+        <ThemeBase.Paper className="sm:w-2/5 md:w-2/5 lg:w-1/4 p-6 ">
           <div className="text-center text-xl font-black my-8">{t('login.loginTitle')}</div>
           <Form<ILoginForm> form={form} onFinish={handleLogin}>
             <Form.Item
@@ -57,7 +57,9 @@ const Login: React.FC = () => {
               initialValue="6666"
               extra={
                 <div className="text-end mt-1">
-                  <a>{t('login.loginForm.forgotPassword')}</a>
+                  <a className="text-black opacity-90 hover:!text-sky-500 text-xs dark:text-white">
+                    {t('login.loginForm.forgotPassword')}
+                  </a>
                 </div>
               }
             >
@@ -82,7 +84,9 @@ const Login: React.FC = () => {
           </Form>
 
           <div className="mt-10 text-center">
-            <span className="text-xs">{t('login.otherWayLogin')}</span>
+            <span className="text-xs text-black opacity-90 dark:text-white">
+              {t('login.otherWayLogin')}
+            </span>
 
             <div className="text-center mt-4 flex justify-center mb-20">
               <a>
@@ -96,9 +100,11 @@ const Login: React.FC = () => {
               </a>
             </div>
 
-            <a className="">{t('login.signUpTips')}</a>
+            <a className="text-black opacity-90 hover:!text-sky-500 text-xs dark:text-white">
+              {t('login.signUpTips')}
+            </a>
           </div>
-        </Paper>
+        </ThemeBase.Paper>
       </div>
     </div>
   );
