@@ -9,13 +9,21 @@ const useUserConfig = () => {
       isLogin: state.userConfig.isLogin,
       token: state.userConfig.token,
       username: state.userConfig.username,
+      emailAddress: state.userConfig.emailAddress,
       getUserInfoLoading: state.userConfig.getUserInfoLoading,
     };
   });
 
-  const setLoginUserInfo = ({ username, token, isLogin, getUserInfoLoading }: IUserConfigState) => {
+  const setLoginUserInfo = ({
+    username,
+    token,
+    isLogin,
+    getUserInfoLoading,
+    emailAddress,
+  }: IUserConfigState) => {
     dispatch(
       _setLoginUserInfo({
+        emailAddress,
         username,
         token,
         isLogin,
@@ -27,6 +35,7 @@ const useUserConfig = () => {
   const signOut = () => {
     dispatch(
       _setLoginUserInfo({
+        emailAddress: '',
         username: '',
         isLogin: false,
         token: '',

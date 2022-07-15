@@ -3,6 +3,7 @@ import CONSTANT from '../../common/constant';
 import LocalStorageWrapper from '../../utils/LocalStorageWrapper';
 export interface IUserConfigState {
   username: string;
+  emailAddress: string;
   isLogin: boolean;
   token: string;
   getUserInfoLoading: boolean;
@@ -10,6 +11,7 @@ export interface IUserConfigState {
 const localToken = LocalStorageWrapper.get(CONSTANT.TOKEN);
 const initialState: IUserConfigState = {
   username: '',
+  emailAddress: '',
   isLogin: !!localToken,
   token: localToken ?? '',
   getUserInfoLoading: false,
@@ -22,6 +24,7 @@ const userConfig = createSlice({
       state.username = action.payload.username;
       state.isLogin = action.payload.isLogin;
       state.token = action.payload.token;
+      state.emailAddress = action.payload.emailAddress;
       state.getUserInfoLoading = action.payload.getUserInfoLoading;
       localStorage.setItem(CONSTANT.TOKEN, action.payload.token);
     },

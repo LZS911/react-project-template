@@ -13,9 +13,10 @@ const Login: React.FC = () => {
   const { setLoginUserInfo } = useUserConfig();
 
   const handleLogin = async () => {
-    const { username } = await form.validateFields();
+    const { emailAddress } = await form.validateFields();
     setLoginUserInfo({
-      username,
+      username: 'Gll Ly',
+      emailAddress,
       token: 'df3fd3',
       isLogin: true,
       getUserInfoLoading: false,
@@ -38,7 +39,7 @@ const Login: React.FC = () => {
                   required: true,
                 },
               ]}
-              name="username"
+              name="emailAddress"
               initialValue="demo@gamil.com"
             >
               <LoginInput

@@ -7,12 +7,13 @@ import {
   TranslationOutlined,
   WindowsOutlined,
 } from '@ant-design/icons';
-import { Avatar } from 'antd';
 import ThemeBase from '../../components/ThemeBase';
+import useUserConfig from '../../hooks/useUserConfig';
 import useLayoutRedux from './useLayoutRedux';
 
 const Header: React.FC = () => {
   const { expandNavMenu, toggleNavMenuState } = useLayoutRedux();
+  const { username } = useUserConfig();
   return (
     <ThemeBase.Paper
       className={`px-6 py-3 w-full !border-b-slate-100 border-b flex justify-between items-center`}
@@ -20,7 +21,7 @@ const Header: React.FC = () => {
       <ThemeBase.Icon
         icon={expandNavMenu ? <MenuFoldOutlined /> : <MenuUnfoldOutlined />}
         onClick={toggleNavMenuState}
-        className="text-base bg-slate-200"
+        className="text-base bg-slate-100 hover:bg-slate-300"
       />
 
       <div className="flex items-center">
@@ -47,8 +48,8 @@ const Header: React.FC = () => {
         <ThemeBase.Icon
           icon={
             <>
-              <Avatar size={24} src="https://joeschmoe.io/api/v1/random" />
-              <span className="ml-3 font-bold">Ly GLL</span>
+              <img className="w-6 h-6 rounded-[50%]" src="https://joeschmoe.io/api/v1/random" />
+              <span className="ml-3 font-bold">{username}</span>
             </>
           }
           className="text-base bg-slate-100 hover:bg-slate-300 px-2 py-1"

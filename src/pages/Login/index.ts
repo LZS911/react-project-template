@@ -1,7 +1,7 @@
 import { HTMLInputTypeAttribute, ReactNode } from 'react';
 import Login from './Login';
 export interface ILoginForm {
-  username: string;
+  emailAddress: string;
   password: string;
 }
 export interface ILoginInputProps {
