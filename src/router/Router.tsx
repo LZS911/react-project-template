@@ -1,4 +1,4 @@
-import { Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { IMenuDataItem } from '.';
 import { useInitTheme } from '../hooks/useChangeTheme';
@@ -7,7 +7,10 @@ import Layout from '../pages/Layout';
 import { noLoginPageList, pageList } from './router.config';
 
 const RouterComponent: React.FC = () => {
-  const { isLogin, token } = useUserConfig();
+  const { isLogin, token, getUserConfig } = useUserConfig();
+  useEffect(() => {
+    getUserConfig();
+  }, [getUserConfig]);
   useInitTheme();
 
   const genPage = (pages: IMenuDataItem[]) => {

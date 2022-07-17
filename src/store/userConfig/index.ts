@@ -6,29 +6,33 @@ export interface IUserConfigState {
   emailAddress: string;
   isLogin: boolean;
   token: string;
-  getUserInfoLoading: boolean;
 }
+export type IUserLoginInfo = Omit<IUserConfigState, 'token' | 'isLogin'>;
+export type IUserLoginState = Pick<IUserConfigState, 'token' | 'isLogin'>;
 const localToken = LocalStorageWrapper.get(CONSTANT.TOKEN);
 const initialState: IUserConfigState = {
   username: '',
   emailAddress: '',
   isLogin: !!localToken,
   token: localToken ?? '',
-  getUserInfoLoading: false,
 };
 const userConfig = createSlice({
   name: 'userConfig',
   initialState,
   reducers: {
-    setLoginUserInfo: (state, action: PayloadAction<IUserConfigState>) => {
+    setLoginUserInfo: (
+      state,
+      action: PayloadAction<Omit<IUserConfigState, 'token' | 'isLogin'>>,
+    ) => {
       state.username = action.payload.username;
+      state.emailAddress = action.payload.emailAddress;
+    },
+    setLoginState: (state, action: PayloadAction<Pick<IUserConfigState, 'token' | 'isLogin'>>) => {
       state.isLogin = action.payload.isLogin;
       state.token = action.payload.token;
-      state.emailAddress = action.payload.emailAddress;
-      state.getUserInfoLoading = action.payload.getUserInfoLoading;
       localStorage.setItem(CONSTANT.TOKEN, action.payload.token);
     },
   },
 });
-export const { setLoginUserInfo } = userConfig.actions;
+export const { setLoginUserInfo, setLoginState } = userConfig.actions;
 export default userConfig.reducer;

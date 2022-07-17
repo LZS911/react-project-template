@@ -10,16 +10,17 @@ import LoginInput from './LoginInput';
 const Login: React.FC = () => {
   const { t } = useTranslation();
   const [form] = useForm<ILoginForm>();
-  const { setLoginUserInfo } = useUserConfig();
+  const { setLoginUserInfo, setLoginState } = useUserConfig();
 
   const handleLogin = async () => {
     const { emailAddress } = await form.validateFields();
     setLoginUserInfo({
       username: 'Gll Ly',
       emailAddress,
+    });
+    setLoginState({
       token: 'df3fd3',
       isLogin: true,
-      getUserInfoLoading: false,
     });
   };
 

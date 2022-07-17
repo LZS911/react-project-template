@@ -35,7 +35,7 @@ module.exports = {
           height: '100%',
           'border-radius': theme('borderRadius.md'),
           opacity: '0',
-          transition: 'all 1s ease 0s',
+          transition: 'all 0.8s ease 0s',
           'box-shadow': 'rgb(140 140 140 / 80%) 0px 0px 6px 6px',
         },
         '.water-wave-show': {
