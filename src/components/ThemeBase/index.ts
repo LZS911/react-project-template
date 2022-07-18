@@ -6,6 +6,7 @@ import Icon from './Icon';
 export interface IThemeBaseProps {
   children?: React.ReactNode;
   className?: string;
+  hidden?: boolean;
 }
 export type IPaperProps = IThemeBaseProps;
 export interface IIconProps extends IThemeBaseProps {

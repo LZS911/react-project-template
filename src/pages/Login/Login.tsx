@@ -31,7 +31,7 @@ const Login: React.FC = () => {
         <span className="text-2xl text-white">{t('login.loginHeader.title')}</span>
       </div>
       <div className="flex justify-center items-center mt-8 ">
-        <ThemeBase.Paper className="rounded-md sm:w-2/5 md:w-2/5 lg:w-1/4 p-6 ">
+        <ThemeBase.Paper className="rounded-md sm:w-[280px] md:w-[300px] lg:w-[350px] p-6 ">
           <div className="text-center text-xl font-black my-8">{t('login.loginTitle')}</div>
           <Form<ILoginForm> form={form} onFinish={handleLogin}>
             <Form.Item

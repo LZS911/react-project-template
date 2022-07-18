@@ -1,14 +1,18 @@
 import { ILayoutProps } from '.';
+import ThemeBase from '../../components/ThemeBase';
 import Header from './Header';
+import Main from './Main';
 import Sider from './Sider';
 
 const Layout: React.FC<ILayoutProps> = ({ children }) => {
   return (
-    <div className="w-full h-full">
-      <Header />
+    <ThemeBase.Paper className="w-full h-full flex">
       <Sider />
-      {children}
-    </div>
+      <div className="flex-auto transition-[width]">
+        <Header />
+        <Main>{children}</Main>
+      </div>
+    </ThemeBase.Paper>
   );
 };
 

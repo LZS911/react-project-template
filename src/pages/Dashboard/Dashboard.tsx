@@ -3,7 +3,7 @@ import ButtonDemo from '../../components/ThemeBase/Demo/Button';
 
 const Dashboard: React.FC = () => {
   return (
-    <ThemeBase.Paper className="dark:!bg-black mt-2">
+    <ThemeBase.Paper>
       <ButtonDemo />
     </ThemeBase.Paper>
   );
