@@ -17,6 +17,7 @@ module.exports = {
       ...colors,
     },
     backgroundColor: {
+      darkPrimary: '#1e1e1e',
       primary: 'var(--color-primary)',
       secondary: 'var(--color-secondary)',
       ...colors,

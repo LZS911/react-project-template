@@ -37,7 +37,7 @@ const LoginInput: React.ForwardRefRenderFunction<HTMLDivElement, ILoginInputProp
         <span className="dark:text-white">{prefix}</span>
         <input
           type={internalType}
-          className={`ml-3 outline-0 w-4/5 p-2 h-full ${CONSTANT.DARK_BG_COLOR} dark:text-white`}
+          className={`ml-3 outline-0 w-4/5 p-2 h-full dark:bg-darkPrimary dark:text-white`}
           value={internalValue}
           onChange={(e) => {
             setInternalValue(e.target.value);

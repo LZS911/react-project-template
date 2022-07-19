@@ -25,13 +25,12 @@ code {
   height: 100vh;
 }
 
-
 @tailwind base;
 @tailwind components;
 
 .theme-blue {
   --color-primary: #1890FF;
-  --color-secondary: #E6F7FF;
+  --color-secondary: rgb(183, 227, 250);
 }
 
 .theme-purple {
@@ -41,7 +40,7 @@ code {
 
 .theme-green {
   --color-primary: #00A854;
-  --color-secondary: #D1E8D99C;
+  --color-secondary: rgb(138, 215, 166);
 }
 
 @tailwind utilities;

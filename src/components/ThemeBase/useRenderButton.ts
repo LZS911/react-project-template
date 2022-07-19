@@ -1,7 +1,6 @@
 import { ButtonProps } from 'antd';
 import { useMemo } from 'react';
 import { IButtonProps } from '.';
-import CONSTANT from '../../common/constant';
 
 const useRenderButton = ({
   type,
@@ -39,14 +38,14 @@ const useRenderButton = ({
     }
 
     return [
-      `${className ?? ''} ${CONSTANT.DARK_BG_COLOR} ${
+      `${className ?? ''} dark:bg-darkPrimary ${
         danger
           ? ''
           : 'focus:border-primary hover:border-primary focus:!text-primary hover:!text-primary'
       }`,
       danger ? undefined : `dark:text-white hover:!text-primary focus:!text-primary`,
     ];
-  }, [type, className]);
+  }, [type, className, danger]);
   return {
     realType,
     classNameList,

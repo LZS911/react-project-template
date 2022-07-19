@@ -7,13 +7,13 @@ import {
   TranslationOutlined,
   WindowsOutlined,
 } from '@ant-design/icons';
-import CONSTANT from '../../common/constant';
-import ThemeBase from '../../components/ThemeBase';
-import useUserConfig from '../../hooks/useUserConfig';
-import useLayoutRedux from './useLayoutRedux';
+import ThemeBase from '../../../components/ThemeBase';
+import useUserConfig from '../../../hooks/useUserConfig';
+import useLayoutRedux from '../useLayoutRedux';
 import useResizeObserver from 'use-resize-observer';
 import { useBoolean } from 'ahooks';
-import useDebounce from '../../hooks/useDebounce';
+import useDebounce from '../../../hooks/useDebounce';
+import CONSTANT from '../../../common/constant';
 
 const Header: React.FC = () => {
   const { expandNavMenu, toggleNavMenuState, changeSiderWidth } = useLayoutRedux();

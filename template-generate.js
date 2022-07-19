@@ -4,7 +4,13 @@ module.exports = {
       parentName: 'pages',
       router: {
         dir: 'router/router.config.tsx',
-        pathFormat: () => name.replace(/([a-z])([A-Z])/g, '$1_$2').toLowerCase(),
+        pathFormat: () => {
+          const path = name.replace(/([a-z])([A-Z])/g, '$1_$2').toLowerCase();
+          if (path.includes('-')) {
+            return path.replace('-', '/');
+          }
+          return path;
+        },
         defaultVariableName: 'pageList',
         // addRouterAfter: () => {
         // axios.get('https://api.github.com/users/LZS911').then((res) => {

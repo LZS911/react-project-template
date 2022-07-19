@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
-import ThemeBase from '../../components/ThemeBase';
-import useLayoutRedux from './useLayoutRedux';
+import ThemeBase from '../../../components/ThemeBase';
+import useLayoutRedux from '../useLayoutRedux';
+import NavNotExpanded from './NavNotExpanded';
 
 const Sider: React.FC = () => {
   const { expandNavMenu, siderWidth } = useLayoutRedux();
   useEffect(() => {
-    console.log(expandNavMenu);
+    // console.log(expandNavMenu);
   }, [expandNavMenu]);
   return (
     <nav
@@ -14,7 +15,9 @@ const Sider: React.FC = () => {
         width: siderWidth,
       }}
     >
-      <ThemeBase.Paper className="w-full h-full flex flex-col"></ThemeBase.Paper>
+      <ThemeBase.Paper className="w-full h-full flex flex-col">
+        {expandNavMenu ? null : <NavNotExpanded />}
+      </ThemeBase.Paper>
     </nav>
   );
 };
