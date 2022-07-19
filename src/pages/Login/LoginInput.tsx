@@ -2,7 +2,6 @@ import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
 import { useBoolean, useToggle } from 'ahooks';
 import { forwardRef, HTMLInputTypeAttribute, useMemo } from 'react';
 import { ILoginInputProps } from '.';
-import CONSTANT from '../../common/constant';
 import ThemeBase from '../../components/ThemeBase';
 import usePropsValue from '../../hooks/usePropsValue';
 
