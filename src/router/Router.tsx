@@ -1,6 +1,7 @@
 import { Suspense, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { IMenuDataItem } from '.';
+import HeaderProgress from '../components/HeaderProgress';
 import { useInitTheme } from '../hooks/useChangeTheme';
 import useUserConfig from '../hooks/useUserConfig';
 import Layout from '../pages/Layout';
@@ -20,7 +21,7 @@ const RouterComponent: React.FC = () => {
           {...v}
           key={v.name}
           element={
-            <Suspense fallback={null}>
+            <Suspense fallback={<HeaderProgress />}>
               <v.element />
             </Suspense>
           }
@@ -32,7 +33,7 @@ const RouterComponent: React.FC = () => {
   return (
     <BrowserRouter>
       {(!isLogin || !token) && (
-        <Suspense fallback={null}>
+        <Suspense fallback={<HeaderProgress />}>
           <Routes>
             {genPage(noLoginPageList)}
             <Route path="*" element={<Navigate to="/login" />} />
@@ -41,7 +42,7 @@ const RouterComponent: React.FC = () => {
       )}
 
       {(isLogin || token) && (
-        <Suspense fallback={null}>
+        <Suspense fallback={<HeaderProgress />}>
           <Layout>
             <Routes>
               {genPage(pageList)}

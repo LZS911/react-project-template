@@ -2,6 +2,8 @@
 @import 'antd/dist/antd.min.css';
 /* FITRUE_isDebug */
 
+@import '@material/react-linear-progress/dist/linear-progress.css';
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -30,18 +32,29 @@ code {
 
 .theme-blue {
   --color-primary: #1890FF;
+  --mdc-theme-primary:#1890FF;
   --color-secondary: rgb(183, 227, 250);
+  --mdc-theme-secondary: rgb(183, 227, 250);
+
 }
 
 .theme-purple {
   --color-primary: #7265E6;
+  --mdc-theme-primary:#7265E6;
   --color-secondary: #EEEDFC;
+  --mdc-theme-secondary: #EEEDFC;
 }
+
+
 
 .theme-green {
   --color-primary: #00A854;
+  --mdc-theme-primary:#00A854;
   --color-secondary: rgb(138, 215, 166);
+  --mdc-theme-secondary: rgb(138, 215, 166);
 }
+
+
 
 @tailwind utilities;
 
